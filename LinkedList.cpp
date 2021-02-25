@@ -169,6 +169,10 @@ public:
 
     void reverse()
     {
+        if (head == NULL)
+        {
+            cout << "List not created!\n";
+        }
         node *curr = head;
         node *prev = NULL;
         node *next;
@@ -187,6 +191,9 @@ public:
             curr = curr->next;
         }
         tail = curr;
+
+        cout << "\nReversed List :";
+        display();
     }
 
     void concat(linked_list new_list)
@@ -197,6 +204,8 @@ public:
             insert_at_end(temp);
             temp = temp->next;
         }
+        cout << "\nConcatinated List :";
+        display();
     }
 
     void display()
@@ -244,16 +253,16 @@ int main()
     {
         int ch;
         cout << "Menu :"
-             << "\n1. create"
-             << "\n2. insert at start"
-             << "\n3. insert at end"
-             << "\n4. insert at index"
-             << "\n5. delete at start"
-             << "\n6. delete at end"
-             << "\n7. delete at index"
-             << "\n8. reverse"
-             << "\n9. conact"
-             << "\n10. display\n";
+             << "\n1.  Create"
+             << "\n2.  Insert at start"
+             << "\n3.  Insert at end"
+             << "\n4.  Insert at index"
+             << "\n5.  Delete at start"
+             << "\n6.  Delete at end"
+             << "\n7.  Delete at index"
+             << "\n8.  Reverse"
+             << "\n9.  Concatinate"
+             << "\n10. Display\n";
 
         cout << "Enter your choice: ";
         cin >> ch;
