@@ -28,15 +28,14 @@ public:
 
     void create()
     {
-        int exit = 0;
         int ch;
 
-        while (exit == 0)
+        while (true)
         {
             add_node();
-            cout << "do you want to add more nodes? : 1(yes) or 0(no)";
+            cout << "continue adding nodes? 1-yes || 0-no : ";
             cin >> ch;
-            if (!ch)
+            if (ch != 1)
             {
                 break;
             }
@@ -52,15 +51,14 @@ public:
         }
         else
         {
-            int exit = 0;
-            char ch;
+            string ch;
             node *temp = root;
-            while (exit == 0)
+            while (true)
             {
                 cout << "put node to left or right of "
-                     << temp->data;
+                     << temp->data << " (l or r) : ";
                 cin >> ch;
-                if (ch == 'l')
+                if (ch[0] == 'l')
                 {
                     if (temp->left == NULL)
                     {
@@ -69,7 +67,7 @@ public:
                     }
                     temp = temp->left;
                 }
-                else
+                else if (ch[0] == 'r')
                 {
                     if (temp->right == NULL)
                     {
@@ -82,10 +80,43 @@ public:
         }
     }
 
+    void pre_order(node *t)
+    {
+        if (t == NULL)
+        {
+            return;
+        }
+        cout << t->data << " ";
+        pre_order(t->left);
+        pre_order(t->right);
+    }
+
+    void in_order(node *t)
+    {
+        if (t == NULL)
+        {
+            return;
+        }
+        pre_order(t->left);
+        cout << t->data << " ";
+        pre_order(t->right);
+    }
+
+    void post_order(node *t)
+    {
+        if (t == NULL)
+        {
+            return;
+        }
+        pre_order(t->left);
+        pre_order(t->right);
+        cout << t->data << " ";
+    }
+
     node *enter_new_node()
     {
         int x;
-        cout << "Enter node data (int): ";
+        cout << "\nEnter node data (int): ";
         cin >> x;
         node *temp = new node(x);
         return temp;
@@ -94,31 +125,42 @@ public:
 
 int main()
 {
-
+    binary_tree tree;
     int exit = 0;
     while (exit == 0)
     {
-        binary_tree tree;
         int ch;
-        cout << "Menu :"
-             << "\n1. create"
-             << "\n2. insert at start"
-             << "\n3. insert at end"
-             << "\n4. insert at index"
-             << "\n5. delete at start"
-             << "\n6. delete at end"
-             << "\n7. delete at index"
-             << "\n8. reverse"
-             << "\n9. conact"
-             << "\n10. display\n";
+        cout << "\nMenu :"
+             << "\n1. create tree"
+             << "\n2. pre order traversal"
+             << "\n3. in order traversal"
+             << "\n4. post order traversal";
 
-        cout << "Enter your choice: ";
+        cout << "\nEnter your choice: ";
         cin >> ch;
         switch (ch)
         {
         case 1:
         {
             tree.create();
+            break;
+        }
+        case 2:
+        {
+            cout << "pre order traversal : ";
+            tree.pre_order(tree.root);
+            break;
+        }
+        case 3:
+        {
+            cout << "in order traversal : ";
+            tree.in_order(tree.root);
+            break;
+        }
+        case 4:
+        {
+            cout << "post order traversal : ";
+            tree.post_order(tree.root);
             break;
         }
         default:
