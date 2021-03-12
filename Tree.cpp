@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -111,6 +112,85 @@ public:
         pre_order(t->left);
         pre_order(t->right);
         cout << t->data << " ";
+    }
+
+    void pre_order_non_recursive(node *head)
+    {
+        if (head == NULL)
+        {
+            return;
+        }
+        stack<node *> s;
+
+        s.push(head);
+
+        while (s.empty() == false)
+        {
+            node *temp = s.top();
+            s.pop();
+
+            cout << temp->data << " \n";
+            if (temp->right != NULL)
+            {
+                s.push(temp->right);
+            }
+            if (temp->left != NULL)
+            {
+                s.push(temp->left);
+            }
+        }
+    }
+
+    void in_order_non_recursive(node *head)
+    {
+        node *temp = head;
+        stack<node *> s;
+        while (true)
+        {
+            while (temp != NULL)
+            {
+                s.push(temp);
+                temp = temp->left;
+            }
+            if (s.empty())
+            {
+                break;
+            }
+            temp = s.top();
+            s.pop();
+            cout << temp->data << " \n";
+            temp = temp->right;
+        }
+    }
+
+    void post_order_non_recursive(node *head)
+    {
+        stack<node *> s1;
+        stack<node *> s2;
+
+        s1.push(head);
+        while (s1.empty() == false)
+        {
+            node *temp = s1.top();
+            s1.pop();
+            s2.push(temp);
+
+            if (temp->left != NULL)
+            {
+                s1.push(temp);
+            }
+            if (temp->right != NULL)
+            {
+                s1.push(temp);
+            }
+        }
+
+        while (s1.empty() == false)
+        {
+            node *temp = s1.top();
+            s2.pop();
+            cout << temp->data << " \n";
+        }
     }
 
     node *enter_new_node()
