@@ -116,25 +116,27 @@ public:
 
     void pre_order_non_recursive(node *head)
     {
+
         if (head == NULL)
         {
             return;
         }
-        stack<node *> s;
 
+        stack<node *> s;
         s.push(head);
 
         while (s.empty() == false)
         {
+
             node *temp = s.top();
+            cout << temp->data << " ";
             s.pop();
 
-            cout << temp->data << " \n";
-            if (temp->right != NULL)
+            if (temp->right)
             {
                 s.push(temp->right);
             }
-            if (temp->left != NULL)
+            if (temp->left)
             {
                 s.push(temp->left);
             }
@@ -158,7 +160,7 @@ public:
             }
             temp = s.top();
             s.pop();
-            cout << temp->data << " \n";
+            cout << temp->data << " ";
             temp = temp->right;
         }
     }
@@ -169,19 +171,20 @@ public:
         stack<node *> s2;
 
         s1.push(head);
+        node *temp;
         while (s1.empty() == false)
         {
-            node *temp = s1.top();
+            temp = s1.top();
             s1.pop();
             s2.push(temp);
 
-            if (temp->left != NULL)
+            if (temp->left)
             {
-                s1.push(temp);
+                s1.push(temp->left);
             }
-            if (temp->right != NULL)
+            if (temp->right)
             {
-                s1.push(temp);
+                s1.push(temp->right);
             }
         }
 
@@ -189,7 +192,7 @@ public:
         {
             node *temp = s1.top();
             s2.pop();
-            cout << temp->data << " \n";
+            cout << temp->data << " ";
         }
     }
 
@@ -212,9 +215,12 @@ int main()
         int ch;
         cout << "\nMenu :"
              << "\n1. create tree"
-             << "\n2. pre order traversal"
-             << "\n3. in order traversal"
-             << "\n4. post order traversal";
+             << "\n2. pre order traversal recursive"
+             << "\n3. in order traversal recursive"
+             << "\n4. post order traversal recursive"
+             << "\n5. pre order traversal non recursive"
+             << "\n6. in order traversal non recursive"
+             << "\n7. post order traversal non recursive";
 
         cout << "\nEnter your choice: ";
         cin >> ch;
@@ -227,20 +233,44 @@ int main()
         }
         case 2:
         {
+            cout << "\n";
             cout << "pre order traversal : ";
             tree.pre_order(tree.root);
             break;
         }
         case 3:
         {
+            cout << "\n";
             cout << "in order traversal : ";
             tree.in_order(tree.root);
             break;
         }
         case 4:
         {
+            cout << "\n";
             cout << "post order traversal : ";
             tree.post_order(tree.root);
+            break;
+        }
+        case 5:
+        {
+            cout << "\n";
+            cout << "pre order traversal : ";
+            tree.pre_order_non_recursive(tree.root);
+            break;
+        }
+        case 6:
+        {
+            cout << "\n";
+            cout << "in order traversal : ";
+            tree.in_order_non_recursive(tree.root);
+            break;
+        }
+        case 7:
+        {
+            cout << "\n";
+            cout << "in order traversal : ";
+            tree.post_order_non_recursive(tree.root);
             break;
         }
         default:
