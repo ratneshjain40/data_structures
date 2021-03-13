@@ -25,7 +25,7 @@ public:
         {
             for (int i = 0; i < n; i++)
             {
-                cout << "Node index " << i;
+                cout << "Node index " << i << " ";
                 node *temp = enter_node_data();
                 insert_at_end(temp);
             }
@@ -180,6 +180,36 @@ public:
         }
     }
 
+    void reverse()
+    {
+        if (head == NULL)
+        {
+            cout << "List not created!\n";
+        }
+        node *curr = head;
+        node *prev = NULL;
+        node *next;
+        while (curr != NULL)
+        {
+            next = curr->next;
+            curr->next = prev;
+            curr->prev = next;
+            prev = curr;
+            curr = next;
+        }
+
+        head = prev;
+        curr = head;
+        while (curr->next != NULL)
+        {
+            curr = curr->next;
+        }
+        tail = curr;
+
+        cout << "\nReversed List :";
+        display();
+    }
+
     void display()
     {
         node *temp = head;
@@ -234,7 +264,8 @@ int main()
              << "\n6. delete at end"
              << "\n7. delete at index"
              << "\n8. conact"
-             << "\n9. display\n";
+             << "\n9. reverse"
+             << "\n10. display\n";
 
         cout << "Enter your choice: ";
         cin >> ch;
@@ -306,6 +337,12 @@ int main()
             break;
         }
         case 9:
+        {
+            list.reverse();
+            cout << "\n";
+            break;
+        }
+        case 10:
         {
             list.display();
             cout << "\n";
