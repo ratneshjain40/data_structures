@@ -137,32 +137,38 @@ public:
         }
         else
         {
-            int i;
-            for (i = 0; i < n - 1; i++)
+            for (int i = 0; i < n - 1; i++)
             {
+                //Temp tracks the element before the delete element
                 temp = temp->next;
                 if (temp == NULL)
                 {
-                    cout << "Index Does Not Exist!\n\n";
+                    cout << "Index Does Not Exist!\n";
                     break;
                 }
             }
-            if (temp != NULL)
+            
+            if (n == 0)
             {
-                if (n == 0)
+                delete_at_start();
+            }    
+            if (temp->next != NULL)
+            {
+                if (temp->next == tail)
                 {
-                    delete_at_start();
+                    delete_at_end();
                 }
                 else
                 {
                     node *del = temp->next;
                     temp->next = temp->next->next;
-                    if (temp->next == NULL)
-                    {
-                        tail = temp;
-                    }
                     delete del;
                 }
+            }
+            else
+            {
+                cout << "Index Does Not Exist!\n";
+
             }
         }
     }

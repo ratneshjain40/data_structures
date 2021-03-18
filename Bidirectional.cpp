@@ -136,34 +136,30 @@ public:
         }
         else
         {
-            int i;
-            for (i = 0; i < n - 1; i++)
+            for (int i = 0; i < n - 1; i++)
             {
                 temp = temp->next;
                 if (temp == NULL)
                 {
-                    cout << "Index Does Not Exist!\n\n";
+                    cout << "Index Does Not Exist!\n";
                     break;
                 }
             }
-            if (temp != NULL)
+            if (n == 0)
             {
-                if (n == 0)
+                delete_at_start();
+            }
+            if (temp->next != NULL)
+            {
+                if (temp->next == tail)
                 {
-                    delete_at_start();
+                    delete_at_end();
                 }
                 else
                 {
                     node *del = temp->next;
-                    temp->next = del->next;
-                    if (del->next == NULL)
-                    {
-                        tail = temp;
-                    }
-                    else
-                    {
-                        del->next->prev = temp;
-                    }
+                    temp->next = temp->next->next;
+                    temp->next->prev = temp;
                     delete del;
                 }
             }
@@ -256,16 +252,16 @@ int main()
     {
         int ch;
         cout << "Menu :"
-             << "\n1. create"
-             << "\n2. insert at start"
-             << "\n3. insert at end"
-             << "\n4. insert at index"
-             << "\n5. delete at start"
-             << "\n6. delete at end"
-             << "\n7. delete at index"
-             << "\n8. conact"
-             << "\n9. reverse"
-             << "\n10. display\n";
+             << "\n1. Create"
+             << "\n2. Insert at start"
+             << "\n3. Insert at end"
+             << "\n4. Insert at index"
+             << "\n5. Delete at start"
+             << "\n6. Delete at end"
+             << "\n7. Delete at index"
+             << "\n8. Conact"
+             << "\n9. Reverse"
+             << "\n10.Display\n";
 
         cout << "Enter your choice: ";
         cin >> ch;
