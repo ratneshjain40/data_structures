@@ -188,9 +188,9 @@ public:
             }
         }
 
-        while (s1.empty() == false)
+        while (s2.empty() == false)
         {
-            node *temp = s1.top();
+            node *temp = s2.top();
             s2.pop();
             cout << temp->data << " ";
         }
