@@ -29,16 +29,13 @@ public:
     void create()
     {
         int ch;
+        cout << "No of nodes to enter : ";
+        cin >> ch;
 
-        while (true)
+        for (int i = 0; i < ch; i++)
         {
+            cout << "Node " << (i + 1) << " ";
             add_node();
-            cout << "continue adding nodes? 1-yes || 0-no : ";
-            cin >> ch;
-            if (ch != 1)
-            {
-                break;
-            }
         }
     }
 
@@ -142,7 +139,7 @@ public:
     node *enter_new_node()
     {
         int x;
-        cout << "\nEnter node data (int): ";
+        cout << "Enter node data (int): ";
         cin >> x;
         node *temp = new node(x);
         return temp;
@@ -179,7 +176,7 @@ int main()
             node *search = tree.search(tree.root, data);
             if (search != NULL)
             {
-                cout << "Node Found in BST!\n";
+                cout << "Node Found in BST\n";
             }
             else
             {
@@ -191,12 +188,12 @@ int main()
         {
             cout << "\n";
             int data;
-            cout << "Enter node to search : ";
+            cout << "Enter node to delete : ";
             cin >> data;
-            node *search = tree.delete_node(tree.root, search->data);
-            if (search != NULL)
+            node *del = tree.delete_node(tree.root, data);
+            if (del != NULL)
             {
-                cout << "Node Deleted in BST!\n";
+                cout << "Node Deleted in BST\n";
             }
             else
             {
