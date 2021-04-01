@@ -76,8 +76,6 @@ public:
         }
     }
 
-    
-
     node *delete_node(node *head, int data)
     {
         if (head == NULL)
@@ -115,7 +113,7 @@ public:
             {
                 node *temp = find_min_node(head->right);
                 head->data = temp->data;
-                head->right = delete_node(head->right,temp->data);
+                head->right = delete_node(head->right, temp->data);
             }
         }
         return head;
@@ -130,6 +128,17 @@ public:
         return find_min_node(t->left);
     }
 
+    struct node *search(struct node *root, int data)
+    {
+        if (root == NULL || root->data == data)
+            return root;
+
+        if (root->data < data)
+            return search(root->right, data);
+
+        return search(root->left, data);
+    }
+
     node *enter_new_node()
     {
         int x;
@@ -139,3 +148,68 @@ public:
         return temp;
     }
 };
+
+int main()
+{
+    BST tree;
+    int exit = 0;
+    while (exit == 0)
+    {
+        int ch;
+        cout << "\nMenu :"
+             << "\n1. Create tree"
+             << "\n2. Search node"
+             << "\n3. Delete node";
+
+        cout << "\nEnter your choice: ";
+        cin >> ch;
+        switch (ch)
+        {
+        case 1:
+        {
+            tree.create();
+            break;
+        }
+        case 2:
+        {
+            cout << "\n";
+            int data;
+            cout << "Enter node to search : ";
+            cin >> data;
+            node *search = tree.search(tree.root, data);
+            if (search != NULL)
+            {
+                cout << "Node Found in BST!\n";
+            }
+            else
+            {
+                cout << "Node NOT in BST!\n";
+            }
+            break;
+        }
+        case 3:
+        {
+            cout << "\n";
+            int data;
+            cout << "Enter node to search : ";
+            cin >> data;
+            node *search = tree.delete_node(tree.root, search->data);
+            if (search != NULL)
+            {
+                cout << "Node Deleted in BST!\n";
+            }
+            else
+            {
+                cout << "Node NOT in BST!\n";
+            }
+            break;
+        }
+        default:
+        {
+            exit = 1;
+            break;
+        }
+        }
+    }
+    return 0;
+}
