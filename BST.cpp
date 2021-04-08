@@ -136,6 +136,24 @@ public:
         return search(root->left, data);
     }
 
+    void inorder(node *n)
+    {
+        if (root == NULL)
+        {
+            cout << "Tree is Empty\n";
+            return;
+        }
+
+        else if (n == NULL)
+            return;
+        else
+        {
+            inorder(n->left);
+            cout << n->data << " ";
+            inorder(n->right);
+        }
+    }
+
     node *enter_new_node()
     {
         int x;
@@ -156,7 +174,8 @@ int main()
         cout << "\nMenu :"
              << "\n1. Create tree"
              << "\n2. Search node"
-             << "\n3. Delete node";
+             << "\n3. Delete node"
+             << "\n4. Print Inorder Traversal";
 
         cout << "\nEnter your choice: ";
         cin >> ch;
@@ -199,6 +218,12 @@ int main()
             {
                 cout << "Node NOT in BST!\n";
             }
+            break;
+        }
+        case 4:
+        {
+            cout << "\n";
+            tree.inorder(tree.root);
             break;
         }
         default:
