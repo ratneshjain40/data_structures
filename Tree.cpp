@@ -30,16 +30,16 @@ public:
     void create()
     {
         int ch;
-
+        cout << "How many nodes do you want to add ? : ";
+        cin >> ch;
         while (true)
         {
-            add_node();
-            cout << "continue adding nodes? 1-yes || 0-no : ";
-            cin >> ch;
-            if (ch != 1)
+            if (ch < 1)
             {
                 break;
             }
+            add_node();
+            ch--;
         }
     }
 
@@ -109,8 +109,8 @@ public:
         {
             return;
         }
-        pre_order(t->left);
-        pre_order(t->right);
+        post_order(t->left);
+        post_order(t->right);
         cout << t->data << " ";
     }
 
@@ -213,22 +213,27 @@ int main()
     while (exit == 0)
     {
         int ch;
-        cout << "\nMenu :"
-             << "\n1. create tree"
-             << "\n2. pre order traversal recursive"
-             << "\n3. in order traversal recursive"
-             << "\n4. post order traversal recursive"
-             << "\n5. pre order traversal non recursive"
-             << "\n6. in order traversal non recursive"
-             << "\n7. post order traversal non recursive";
+        cout << "\n----------------- Menu -----------------"
+             << "\n1. Create tree"
+             << "\n2. Pre order traversal recursive"
+             << "\n3. In order traversal recursive"
+             << "\n4. Post order traversal recursive"
+             << "\n5. Pre order traversal non recursive"
+             << "\n6. In order traversal non recursive"
+             << "\n7. Post order traversal non recursive"
+             << "\n----------------------------------------";
 
         cout << "\nEnter your choice: ";
         cin >> ch;
+        cout << "\n----------------------------------------";
+
         switch (ch)
         {
         case 1:
         {
+            cout << "\n";
             tree.create();
+            cout << "\n----------------------------------------";
             break;
         }
         case 2:
@@ -236,6 +241,8 @@ int main()
             cout << "\n";
             cout << "pre order traversal : ";
             tree.pre_order(tree.root);
+            cout << "\n----------------------------------------";
+
             break;
         }
         case 3:
@@ -243,6 +250,8 @@ int main()
             cout << "\n";
             cout << "in order traversal : ";
             tree.in_order(tree.root);
+            cout << "\n----------------------------------------";
+
             break;
         }
         case 4:
@@ -250,6 +259,8 @@ int main()
             cout << "\n";
             cout << "post order traversal : ";
             tree.post_order(tree.root);
+            cout << "\n----------------------------------------";
+
             break;
         }
         case 5:
@@ -257,6 +268,8 @@ int main()
             cout << "\n";
             cout << "pre order traversal : ";
             tree.pre_order_non_recursive(tree.root);
+            cout << "\n----------------------------------------";
+
             break;
         }
         case 6:
@@ -264,6 +277,8 @@ int main()
             cout << "\n";
             cout << "in order traversal : ";
             tree.in_order_non_recursive(tree.root);
+            cout << "\n----------------------------------------";
+
             break;
         }
         case 7:
@@ -271,6 +286,8 @@ int main()
             cout << "\n";
             cout << "in order traversal : ";
             tree.post_order_non_recursive(tree.root);
+            cout << "\n----------------------------------------";
+
             break;
         }
         default:

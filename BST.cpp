@@ -152,6 +152,7 @@ public:
             cout << n->data << " ";
             inorder(n->right);
         }
+        cout << "\n";
     }
 
     node *enter_new_node()
@@ -171,19 +172,24 @@ int main()
     while (exit == 0)
     {
         int ch;
-        cout << "\nMenu :"
+        cout << "\n----------------- Menu -----------------"
              << "\n1. Create tree"
              << "\n2. Search node"
              << "\n3. Delete node"
-             << "\n4. Print Inorder Traversal";
+             << "\n4. Print Inorder Traversal"
+             << "\n----------------------------------------";
 
         cout << "\nEnter your choice: ";
+        cout << "\n----------------------------------------";
+
         cin >> ch;
         switch (ch)
         {
         case 1:
         {
+            cout << "\n";
             tree.create();
+            cout << "\n----------------------------------------";
             break;
         }
         case 2:
@@ -201,6 +207,7 @@ int main()
             {
                 cout << "Node NOT in BST!\n";
             }
+            cout << "\n----------------------------------------";
             break;
         }
         case 3:
@@ -218,12 +225,14 @@ int main()
             {
                 cout << "Node NOT in BST!\n";
             }
+            cout << "\n----------------------------------------";
             break;
         }
         case 4:
         {
-            cout << "\n";
+            cout << "\nTraversal : ";
             tree.inorder(tree.root);
+            cout << "\n----------------------------------------";
             break;
         }
         default:
