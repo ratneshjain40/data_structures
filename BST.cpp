@@ -152,7 +152,6 @@ public:
             cout << n->data << " ";
             inorder(n->right);
         }
-        cout << "\n";
     }
 
     node *enter_new_node()
@@ -180,9 +179,8 @@ int main()
              << "\n----------------------------------------";
 
         cout << "\nEnter your choice: ";
-        cout << "\n----------------------------------------";
-
         cin >> ch;
+        cout << "\n----------------------------------------";
         switch (ch)
         {
         case 1:
