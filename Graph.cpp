@@ -1,6 +1,7 @@
 #include <iostream>
 #include <list>
 #include <iterator>
+#include <map>
 
 using namespace std;
 
@@ -16,8 +17,36 @@ class Graph
 private:
     node adjacency_list[20];
     int size;
+    map<int, bool> visited;
 
 public:
+    int get_size()
+    {
+        return size;
+    }
+
+    node get_node(int vertex)
+    {
+        return adjacency_list[vertex];
+    }
+
+    void dfs(int v)
+    {
+
+        visited[v] = true;
+        node n = get_node(v);
+        cout << n.vertex << " ";
+        list<node>::iterator it;
+
+        for (it = n.adjacent.begin(); it != n.adjacent.end(); ++it)
+        {
+            if (!visited[(*it).vertex])
+            {
+                dfs((*it).vertex);
+            }
+        }
+    }
+
     void create(int n)
     {
         size = n;
@@ -68,13 +97,15 @@ public:
     {
         node a = adjacency_list[i];
         node b = adjacency_list[j];
-        list<node>::iterator it;
+
         // Same node cant be added
         if (i == j)
         {
             return;
         }
         // if already added, ignore
+        list<node>::iterator it;
+
         for (it = a.adjacent.begin(); it != a.adjacent.end(); ++it)
         {
             if (it->vertex == b.vertex)
@@ -91,6 +122,7 @@ public:
         list<node> lst = parent.adjacent;
         cout << "{ " << parent.vertex << " } ---->  ";
         list<node>::iterator it;
+
         for (it = lst.begin(); it != lst.end(); ++it)
         {
             cout << it->vertex << ' ';
@@ -99,7 +131,7 @@ public:
 
     void display()
     {
-        cout << "\n------------ Adjacency List Representation ------------\n";
+        cout << "\n------------ Adjacency List Representation ------------\n\n";
         for (int i = 0; i < size; i++)
         {
             show_node(adjacency_list[i]);
@@ -118,8 +150,9 @@ int main()
     {
         int ch;
         cout << "Menu :"
-             << "\n1.  Create"
-             << "\n10. Display\n";
+             << "\n1. Create"
+             << "\n2. Display"
+             << "\n3. DFS\n";
 
         cout << "Enter your choice: ";
         cin >> ch;
@@ -134,9 +167,19 @@ int main()
             cout << "\n";
             break;
         }
-        case 10:
+        case 2:
         {
             graph.display();
+            break;
+        }
+        case 3:
+        {
+            int start;
+            cout << "Enter start vertex from 0 -  " << graph.get_size() - 1 << " : ";
+            cin >> start;
+            cout << "DFS is : ";
+            graph.dfs(start);
+            cout << "\n";
             break;
         }
         default:
