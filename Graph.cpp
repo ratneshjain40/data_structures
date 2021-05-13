@@ -177,6 +177,10 @@ int main()
             int start;
             cout << "Enter start vertex from 0 -  " << graph.get_size() - 1 << " : ";
             cin >> start;
+            if(start < 0 && start > (graph.get_size() - 1)) {
+                cout << "Invalid input!";
+                break;
+            }
             cout << "DFS is : ";
             graph.dfs(start);
             cout << "\n";
